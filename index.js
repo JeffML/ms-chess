@@ -27,6 +27,9 @@ class ChessPiece {
         if (rank < 1 || rank > 8) {
             throw Error("invalid rank", rank)
         }
+        if (piece === 'P' && rank < 2) {
+            throw Error("pawns cannot be on first rank")
+        }
         this.piece = piece;
         this.position = {
             file,

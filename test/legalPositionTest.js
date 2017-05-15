@@ -16,6 +16,17 @@ describe('Legal Pieces test', () => {
         expect(ka1.position)
             .to.have.property('rank', '1')
     })
+    it('Pa2', () => {
+        var pa2 = new ChessPiece('Pa2');
+        expect(pa2)
+            .to.have.all.keys('piece', 'position');
+        expect(pa2)
+            .to.have.property('piece', 'P');
+        expect(pa2.position)
+            .to.have.property('file', 'a');
+        expect(pa2.position)
+            .to.have.property('rank', '2')
+    })
 })
 
 describe('Illegal Pieces test', () => {
@@ -30,5 +41,9 @@ describe('Illegal Pieces test', () => {
     it('Ma1', () => {
         expect(() => new ChessPiece('Ma1'))
             .to.throw('invalid piece');
+    });
+    it('Pa1', () => {
+        expect(() => new ChessPiece('Pa1'))
+            .to.throw('pawns cannot be on first rank')
     });
 })
