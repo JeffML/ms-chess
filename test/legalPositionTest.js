@@ -1,4 +1,4 @@
-var ChessPiece = require('../index.js')
+var ChessPiece = require('../ChessPiece.js')
     .ChessPiece
 
 var expect = require('chai')

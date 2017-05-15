@@ -1,8 +1,5 @@
 'use strict';
 
-var seneca = require('seneca')()
-
-
 const pieces = [
     'K',
     'Q',
