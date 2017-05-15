@@ -1,0 +1,30 @@
+{
+  "name": "ms-chess",
+  "version": "1.0.0",
+  "description": "Chess Engine using Seneca microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeffML/ms-chess.git"
+  },
+  "keywords": [
+    "chess",
+    "microservices"
+  ],
+  "author": "JeffML",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeffML/ms-chess/issues"
+  },
+  "homepage": "https://github.com/JeffML/ms-chess#readme",
+  "dependencies": {
+    "seneca": "^3.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1"
+  }
+}
