@@ -1,4 +1,6 @@
-var ChessPiece = require('../ChessPiece.js')
+"use strict";
+
+var ChessPiece = require('../ChessPiece')
     .ChessPiece
 
 var expect = require('chai')
