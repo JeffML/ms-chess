@@ -1,4 +1,6 @@
 'use strict';
+const placement = require('./services/Placement')
+const seneca = require('seneca')
 
 const pieces = [
     'K',
@@ -18,21 +20,28 @@ class ChessPiece {
         if (!pieces.includes(piece)) {
             throw Error("invalid piece", piece);
         }
-        if (file < 'a' || file > 'h') {
-            throw Error("invalid file", file)
-        }
-        if (rank < 1 || rank > 8) {
-            throw Error("invalid rank", rank)
-        }
-        if (piece === 'P' && rank < 2) {
-            throw Error("pawns cannot be on first rank")
-        }
+
         this.piece = piece;
         this.position = {
             file,
             rank
         }
     }
+
+    isLegal(cb) {
+        seneca.use(placement)
+            .act({
+                role: "placement",
+                cmd: "check",
+                piece: this.piece,
+                position: this.position
+            }, (err, result) => {
+                if (err) cb(err);
+                cb(result.error, result.success)
+            });
+    }
+
+
     denote() {
         return this.piece + this.position.file + this.position.rank;
     }

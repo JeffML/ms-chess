@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/JeffML/ms-chess#readme",
   "dependencies": {
+    "nats": "^0.7.20",
+    "nats-hemera": "^1.2.12",
     "seneca": "^3.3.0"
   },
   "devDependencies": {

@@ -9,6 +9,10 @@ var expect = require('chai')
 describe('Legal Pieces test', () => {
     it('Ka1', () => {
         var ka1 = new ChessPiece('Ka1');
+        ka1.isLegal((err, isLegal) => {
+            expect(isLegal)
+                .to.be.true;
+        });
         expect(ka1)
             .to.have.all.keys('piece', 'position');
         expect(ka1)
@@ -17,9 +21,13 @@ describe('Legal Pieces test', () => {
             .to.have.property('file', 'a');
         expect(ka1.position)
             .to.have.property('rank', '1')
-    })
+    });
     it('Pa2', () => {
         var pa2 = new ChessPiece('Pa2');
+        pa2.isLegal((err, isLegal) => {
+            expect(isLegal)
+                .to.be.true;
+        });
         expect(pa2)
             .to.have.all.keys('piece', 'position');
         expect(pa2)
@@ -33,19 +41,34 @@ describe('Legal Pieces test', () => {
 
 describe('Illegal Pieces test', () => {
     it('Qa9', () => {
-        expect(() => new ChessPiece('Qa9'))
-            .to.throw('invalid rank');
+        const piece = new ChessPiece('Qa9');
+        piece.isLegal((err, isLegal) => {
+            expect(isLegal)
+                .to.be.false;
+            expect(err)
+                .to.equal('invalid rank');
+        });
     });
     it('Qr1', () => {
-        expect(() => new ChessPiece('Qr1'))
-            .to.throw('invalid file');
+        const piece = new ChessPiece('Qr1');
+        piece.isLegal((err, isLegal) => {
+            expect(isLegal)
+                .to.be.false;
+            expect(err)
+                .to.equal('invalid file');
+        });
     });
     it('Ma1', () => {
         expect(() => new ChessPiece('Ma1'))
             .to.throw('invalid piece');
     });
     it('Pa1', () => {
-        expect(() => new ChessPiece('Pa1'))
-            .to.throw('pawns cannot be on first rank')
+        const piece = new ChessPiece('Pa1');
+        piece.isLegal((err, isLegal) => {
+            expect(isLegal)
+                .to.be.false;
+            expect(err)
+                .to.equal('pawns cannot be on first rank');
+        });
     });
 })
