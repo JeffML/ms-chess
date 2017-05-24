@@ -1,6 +1,5 @@
 'use strict';
 const placement = require('./services/Placement')
-const seneca = require('seneca')
 
 const pieces = [
     'K',

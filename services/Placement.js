@@ -3,7 +3,13 @@
 module.exports = function placement(options) {
     this.add({
         role: "placement",
-        cmd: "check"
+        cmd: "position"
+    })
+
+
+    this.add({
+        role: "placement",
+        cmd: "piece"
     }, (msg, reply) => {
         if (msg.position.file < 'a' || msg.position.file > 'h') {
             reply(null, {
