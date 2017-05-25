@@ -1,10 +1,10 @@
 module.exports = function movement(options) {
-    function diagonal(position) {
+    function diagonal(position, range = 7) {
         var moves = [];
         const cFile = position.file.charCodeAt()
         const cRank = position.rank.charCodeAt();
 
-        for (var i = 1; i < 8; i++) {
+        for (var i = 1; i < range + 1; i++) {
             moves.push({
                 file: String.fromCharCode(cFile - i),
                 rank: String.fromCharCode(cRank - i)
@@ -13,32 +13,42 @@ module.exports = function movement(options) {
                 file: String.fromCharCode(cFile + i),
                 rank: String.fromCharCode(cRank + i)
             });
+            moves.push({
+                file: String.fromCharCode(cFile - i),
+                rank: String.fromCharCode(cRank + i)
+            });
+            moves.push({
+                file: String.fromCharCode(cFile + i),
+                rank: String.fromCharCode(cRank - i)
+            });
         }
         return moves;
     }
 
-    function rankAndFile(position) {
+    function rankAndFile(position, range = 7) {
         var moves = [];
+        const cFile = position.file.charCodeAt()
+        const cRank = position.rank.charCodeAt();
 
-        for (var file = (-7); file < 8; file++) {
-            if (file !== 0) {
-                var f = position.file - file;
-                moves.push({
-                    file: f,
-                    rank: position.rank
-                })
-            }
-
-            for (var rank = (-7); rank < 8; rank++) {
-                if (rank !== 0) {
-                    var r = position.rank - rank;
-                    moves.push({
-                        file: position.file,
-                        rank: r
-                    })
-                }
-            }
+        for (var i = 1; i < range + 1; i++) {
+            moves.push({
+                file: String.fromCharCode(cFile - i),
+                rank: String.fromCharCode(cRank)
+            });
+            moves.push({
+                file: String.fromCharCode(cFile),
+                rank: String.fromCharCode(cRank + i)
+            });
+            moves.push({
+                file: String.fromCharCode(cFile + i),
+                rank: String.fromCharCode(cRank)
+            });
+            moves.push({
+                file: String.fromCharCode(cFile),
+                rank: String.fromCharCode(cRank - i)
+            });
         }
+        return moves;
     }
 
     this.add({
@@ -57,7 +67,12 @@ module.exports = function movement(options) {
             rawMoves = diagonal(pos);
             break;
         case 'Q':
-            rawMoves = rankAndFile(pos) + diagonal(pos);
+            rawMoves = rankAndFile(pos)
+                .concat(diagonal(pos));
+            break;
+        case 'K':
+            rawMoves = rankAndFile(pos, 1)
+                .concat(diagonal(pos, 1))
             break;
         default:
             rawMoves = []; //Error: unhandled by this service
