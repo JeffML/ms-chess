@@ -55,6 +55,7 @@ module.exports = function movement(options) {
         role: "movement",
         cmd: "rawMoves",
     }, (msg, reply) => {
+        var err = null;
         var rawMoves = [];
 
         var pos = msg.piece.position;
@@ -75,21 +76,26 @@ module.exports = function movement(options) {
                 .concat(diagonal(pos, 1))
             break;
         default:
-            rawMoves = []; //Error: unhandled by this service
+            err = "unhandled " + msg.piece;
             break;
         };
 
-        reply(null, rawMoves);
+        reply(err, rawMoves);
     });
 
     this.add({
         role: "movement",
         cmd: "legalSquares",
     }, (msg, reply) => {
+        const isPawn = msg.piece.piece === 'P';
+        const isKnight = msg.piece.piece === 'N';
+
         this.act({
             role: "movement",
             cmd: "rawMoves",
-            piece: msg.piece
+            piece: msg.piece,
+            isPawn: isPawn,
+            isKnight: isKnight
         }, (err, msg) => {
             const squared = [];
 
