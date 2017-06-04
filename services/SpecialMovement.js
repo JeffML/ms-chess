@@ -46,6 +46,10 @@ module.exports = function specialMovement(options) {
         cmd: "rawMoves",
         isPawn: true
     }, (msg, reply) => {
+        if (msg.piece.piece !== 'P') {
+            return ("piece was not a pawn")
+        }
+
         var pos = msg.piece.position;
 
         const rawMoves = pawnMoves(pos);

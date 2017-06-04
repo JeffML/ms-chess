@@ -162,6 +162,9 @@ describe('Legal squares test', () => {
             cmd: "legalSquares",
             piece: p
         }, (err, msg) => {
+            console.log("Na1", {
+                msg
+            })
             expect(err)
                 .to.be.null;
             expect(msg)

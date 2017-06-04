@@ -23,6 +23,7 @@ describe('Raw moves test', () => {
             cmd: "rawMoves",
             piece: Ba1
         }, (err, msg) => {
+            console.log(msg)
             expect(msg)
                 .to.include({
                     file: 'b',
@@ -187,6 +188,9 @@ describe('Legal squares test', () => {
             cmd: "legalSquares",
             piece: p
         }, (err, msg) => {
+            console.log("Rd4", {
+                msg
+            })
             expect(err)
                 .to.be.null;
             expect(msg)
