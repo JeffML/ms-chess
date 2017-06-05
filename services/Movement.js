@@ -1,55 +1,7 @@
+const rankAndFile = require("./helpers/rankAndFileMoves")
+const diagonalMoves = require("./helpers/diagonalMoves")
+
 module.exports = function movement(options) {
-    function diagonal(position, range = 7) {
-        var moves = [];
-        const cFile = position.file.charCodeAt()
-        const cRank = position.rank.charCodeAt();
-
-        for (var i = 1; i < range + 1; i++) {
-            moves.push({
-                file: String.fromCharCode(cFile - i),
-                rank: String.fromCharCode(cRank - i)
-            });
-            moves.push({
-                file: String.fromCharCode(cFile + i),
-                rank: String.fromCharCode(cRank + i)
-            });
-            moves.push({
-                file: String.fromCharCode(cFile - i),
-                rank: String.fromCharCode(cRank + i)
-            });
-            moves.push({
-                file: String.fromCharCode(cFile + i),
-                rank: String.fromCharCode(cRank - i)
-            });
-        }
-        return moves;
-    }
-
-    function rankAndFile(position, range = 7) {
-        var moves = [];
-        const cFile = position.file.charCodeAt()
-        const cRank = position.rank.charCodeAt();
-
-        for (var i = 1; i < range + 1; i++) {
-            moves.push({
-                file: String.fromCharCode(cFile - i),
-                rank: String.fromCharCode(cRank)
-            });
-            moves.push({
-                file: String.fromCharCode(cFile),
-                rank: String.fromCharCode(cRank + i)
-            });
-            moves.push({
-                file: String.fromCharCode(cFile + i),
-                rank: String.fromCharCode(cRank)
-            });
-            moves.push({
-                file: String.fromCharCode(cFile),
-                rank: String.fromCharCode(cRank - i)
-            });
-        }
-        return moves;
-    }
 
     this.add({
         role: "movement",
