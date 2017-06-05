@@ -1,5 +1,5 @@
 const rankAndFile = require("./helpers/rankAndFileMoves")
-const diagonalMoves = require("./helpers/diagonalMoves")
+const diagonal = require("./helpers/diagonalMoves")
 
 module.exports = function movement(options) {
 
