@@ -1,6 +1,7 @@
 # ms-chess
 a microservice-based chess engine
 
-This is the codebase for Part 1 of an series I am writing for freecodecamp;  Part 2 is based on code at https://github.com/JeffML/ms-chess2a
+The completed rules engine (for Part 3 of the series) can be found at https://github.com/JeffML/ms-chess3
 
-Part 3, which I expect to be the final installment, is in progress.
+This was the codebase for Part 1 of an series wrote for freecodecamp;  Part 2 is based on code at https://github.com/JeffML/ms-chess2a
+
